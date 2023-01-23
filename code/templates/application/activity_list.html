@@ -1,0 +1,33 @@
+{% extends 'application/activity_base.html' %}
+
+{% block store_content %}
+<div>
+    <div class="container">
+        <div class="row">
+
+            {% for i in activity_list %}
+            <div class="col-lg-4 d-flex align-items-stretch">
+                <div class="card cardmodify cardbackground" style="width: 50rem;">
+                    <div class="card-header">
+                        <h5><b>{{ i.activity_name }}</b></h5>
+                    </div>
+                    <div class="card-header" float="left">
+                        <h5><b>活动类型：{{ i.activity_type }}</b></h5>
+                        <h5><b>活动发布管理员：{{ i.admin }}</b></h5>
+                        <h5><b>活动地点：{{ i.location }}</b></h5>
+                        <h5><b>活动开始时间：{{ i.activity_start_time }}</b></h5>
+                        <h5><b>活动结束时间：{{ i.activity_end_time }}</b></h5>
+                        <h5><b>活动简介：{{ i.activity_introduction }}</b></h5>
+                        <h5><b>活动要求：{{ i.activity_requirements }}</b></h5>
+                        <h5><b>招募总人数：{{ i.headcount }}</b></h5>
+                        <a href="/application/submit/{{i.activity_id}}" class="btn btn-success btn-sm addtocartbutton">
+                            <font size="3px">我要申请这个活动</font></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

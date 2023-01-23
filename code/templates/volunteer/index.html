@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}主页{% endblock %}
+{% load bootstrap4 %}
+{% block content %}
+<div style="position:absolute;top:160px;left:24%">
+    {% if request.session.is_login %}
+    <h1 class=text-center><font color="RebeccaPurple">您好，{{ request.session.username }}！欢迎回来！</font></h1>
+
+    {% else %}
+    <h1 class=text-center><font color="RebeccaPurple">欢迎光临校园志愿者招募平台！</font></h1>
+
+</div>
+{% endif %}
+{% endblock %}

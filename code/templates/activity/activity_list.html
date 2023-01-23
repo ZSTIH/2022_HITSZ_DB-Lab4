@@ -1,0 +1,40 @@
+{% extends 'activity/activity_base.html' %}
+
+{% block store_content %}
+<div>
+    <div class="container">
+        <div class="row">
+
+            {% for i in activity_list %}
+            <div class="col-lg-4 d-flex align-items-stretch">
+                <div class="card cardmodify cardbackground" style="width: 50rem;">
+                    <div class="card-header">
+                        <h5><b>{{ i.activity_name }}</b></h5>
+                    </div>
+                    <div class="card-header" float="left">
+                        <h5><b>活动类型：{{ i.activity_type }}</b></h5>
+                        <h5><b>活动发布管理员：{{ i.admin }}</b></h5>
+                        <h5><b>活动地点：{{ i.location }}</b></h5>
+                        <h5><b>活动开始时间：{{ i.activity_start_time }}</b></h5>
+                        <h5><b>活动结束时间：{{ i.activity_end_time }}</b></h5>
+                        {% if i.activity_state == 0 %}
+                        <h5><b>活动状态：尚未开始招募</b></h5>
+                        {% elif i.activity_state == 1 %}
+                        <h5><b>活动状态：正在招募</b></h5>
+                        {% elif i.activity_state == 2 %}
+                        <h5><b>活动状态：招募结束</b></h5>
+                        {% elif i.activity_state == 3 %}
+                        <h5><b>活动状态：活动已结束</b></h5>
+                        {% endif %}
+                        <h5><b>活动简介：{{ i.activity_introduction }}</b></h5>
+                        <h5><b>活动要求：{{ i.activity_requirements }}</b></h5>
+                        <h5><b>招募总人数：{{ i.headcount }}</b></h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

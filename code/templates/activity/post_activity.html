@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block title %}个人信息中心{% endblock %}
+{% block css %}
+<link href="{% static 'css/login.css' %}" rel="stylesheet"/>{% endblock %}
+
+{% block content %}
+
+<!-- Bootstrap 4 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+<!-- Font Awesome -->
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<!-- Moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"
+        integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
+
+<!-- Tempus Dominus Bootstrap 4 -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css"
+      integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"
+        integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
+
+
+<div class="container formback">
+    <div class="loginform jumbotron">
+        <h3>发布活动</h3>
+        <h5>（请填写活动信息）</h5>
+        <form class='form-group' action="/post_activity" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="text-left"><label>活动名称</label></div>
+                {{ activity_form.activity_name }}
+            </div>
+            <div class="form-group">
+                <div class="text-left"><label>活动简介</label></div>
+                {{ activity_form.activity_introduction }}
+            </div>
+            <div class="form-group">
+                <div class="text-left"><label>活动要求</label></div>
+                {{ activity_form.activity_requirements }}
+            </div>
+            <div class="form-group">
+                <div class="text-left"><label>活动地点</label></div>
+                {{ activity_form.location }}
+            </div>
+            <div class="form-group">
+                <div class="text-left"><label>活动类型</label></div>
+                {{ activity_form.activity_type }}
+            </div>
+            <div class="text-left"><label>活动开始时间</label></div>
+            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                {{ activity_form.activity_start_time }}
+                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+            </div>
+            <div class="text-left"><label>活动结束时间</label></div>
+            <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                {{ activity_form.activity_end_time }}
+                <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+            </div>
+            <script>
+              $(function () {
+                $("#datetimepicker1").datetimepicker({
+                  format: 'YYYY/MM/DD HH:mm:ss',
+                });
+              });
+            </script>
+            <script>
+              $(function () {
+                $("#datetimepicker2").datetimepicker({
+                  format: 'YYYY/MM/DD HH:mm:ss',
+                });
+              });
+            </script>
+            <br>
+            <div class="form-group">
+                <div class="text-left"><label>招募人数</label></div>
+                {{ activity_form.headcount }}
+            </div>
+            <button type="reset" class="btn btn-default pull-left">重置</button>
+            <button type="submit" class="btn btn-primary pull-right">提交</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

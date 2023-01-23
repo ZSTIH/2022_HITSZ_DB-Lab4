@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block title %}个人信息中心{% endblock %}
+{% block css %}
+<link href="{% static 'css/login.css' %}" rel="stylesheet"/>{% endblock %}
+
+{% block content %}
+<div class="container formback">
+    <div class="loginform jumbotron">
+        <h3>个人信息中心</h3>
+        <form class='form-group' action="/volunteer/show_info/" method="POST">
+            {% csrf_token %}
+            <div class="card-header">
+                <h5 align="left">用户名：{{ request.session.username }}</h5>
+                {% if request.session.is_volunteer %}
+                <h5 align="left">用户类型：志愿者（普通用户）</h5>
+                <h5 align="left">义工组织：{{ request.session.organization }}</h5>
+                {% else %}
+                <h5 align="left">用户类型：活动管理员</h5>
+                {% endif %}
+                <h5 align="left">所属学院：{{ request.session.department }}</h5>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

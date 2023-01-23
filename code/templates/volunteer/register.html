@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container formback">
+    <div class="loginform jumbotron">
+        <h3>志愿者注册</h3>
+
+        <form class='form-register' action="/volunteer/register/" method="post">
+
+            {% if message %}
+            <div class="alert alert-warning">{{ message }}</div>
+            {% endif %}
+
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="text-left"><label for="InputUsername">用户名</label></div>
+                {{ register_form.username}}
+            </div>
+            <div class="form-group">
+                <div class="text-left"><label for="InputPassword">密码</label></div>
+                {{ register_form.password1 }}
+            </div>
+            <div class="form-group">
+                <div class="text-left"><label for="InputUsername">确认密码</label></div>
+                {{ register_form.password2 }}
+            </div>
+            <div class="form-group">
+                <div class="text-left"><label for="InputOrganization">所在义工组织</label></div>
+                {{ register_form.organization }}
+            </div>
+            <div class="form-group">
+                <div class="text-left"><label for="InputDepartment">所在学院</label></div>
+                {{ register_form.department }}
+            </div>
+
+
+            <button type="submit" class="btn btn-default pull-left"><a href="/volunteer/login/">直接登录</a></button>
+            <button type="submit" class="btn btn-primary pull-right">注册</button>
+
+        </form>
+    </div>
+</div> <!-- /container -->
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'application/activity_base.html' %}
+
+{% block store_content %}
+<div>
+    <div class="container">
+        <div class="row">
+
+            {% for i in application_list %}
+            <div class="col-lg-4 d-flex align-items-stretch">
+                <div class="card cardmodify cardbackground" style="width: 50rem;">
+                    <div class="card-header">
+                        <h5><b>【{{ i.user }}】申请报名活动【{{ i.activity }}】</b></h5>
+                    </div>
+                    <div class="card-header" float="left">
+                        <h5><b>活动：{{ i.activity }}</b></h5>
+                        <h5><b>审核管理员：{{ i.admin }}</b></h5>
+                        <h5><b>申请志愿者：{{ i.user }}</b></h5>
+                        <h5><b>申请时间：{{ i.application_time }}</b></h5>
+                        {% if i.application_state == 0 %}
+                        <h5><b>申请状态：尚未审核</b></h5>
+                        {% elif i.application_state == 1 %}
+                        <h5><b>申请状态：审核通过</b></h5>
+                        {% elif i.application_state == 2 %}
+                        <h5><b>申请状态：审核不通过</b></h5>
+                        {% endif %}
+                        <h5><b>审核时间：{{ i.check_time }}</b></h5>
+                        {% if i.application_state == 0 %}
+                        <a href="/application/approve/{{i.application_id}}"
+                           class="btn btn-success btn-sm addtocartbutton">
+                            <font size="3px">通过该申请</font></a>
+                        <a href="/application/reject/{{i.application_id}}"
+                           class="btn btn-success btn-sm addtocartbutton">
+                            <font size="3px">拒绝该申请</font></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}
