@@ -47,3 +47,7 @@
 ![](./assets/demo2.png)
 
 ![](./assets/demo3.png)
+
+## 致谢
+
+本项目在设计和实现的时候参考了[hewei2001](https://github.com/hewei2001)的[campus-canteen-ordering](https://github.com/hewei2001/campus-canteen-ordering)项目。感谢作者的贡献！
